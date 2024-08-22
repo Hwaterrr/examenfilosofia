@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Octavo B - El Principio de Arquímedes</title>
+    <link rel="icon" href="imagenes/policia.png" type="image/png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow-y: auto;
+        }
+        .modal {
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            margin: 20px auto;
+            box-sizing: border-box;
+            position: relative;
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        .modal.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .modal.hide {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+        h1 {
+            font-size: 1.5em;
+            color: #333;
+        }
+        h2 {
+            font-size: 1.2em;
+            color: #0066cc;
+            margin-top: 20px;
+        }
+        p {
+            text-align: left;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        .btn {
+            display: block;
+            background-color: #0066cc;
+            color: white;
+            padding: 10px;
+            margin: 20px auto 0;
+            text-align: center;
+            width: 80%;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #005bb5;
+        }
+        .hidden {
+            display: none;
+        }
+        .custom-image {
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto 10px auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.3em;
+            }
+            h2 {
+                font-size: 1.1em;
+            }
+            p {
+                font-size: 0.9em;
+            }
+            .btn {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="modal" id="modal-1">
+    <h1>BIENVENIDO AL EXAMEN DEL PRINCIPIO DE ARQUÍMEDES </h1>
+    <h2>Recomendaciones para usar este sistema</h2>
+    <p>1. Separate de tus compañeros, se te van a copiar.</p>
+    <p>2. Asegurate de tener un buen internet.</p>
+    <p>3. Si tienes dudas es tu ultimo momento, Preguntalas.</p>
+    <p>4. Tenga en cuenta que cualquier información registrada y no enviada no será guardada.</p>
+    <p>5. Si tiene algo que aportar al tema antes de comenzar adelante.</p>
+    <p>6. Las respuestas son revisadas de manera manual, cualquier demora al presentar los resultados es totalmente justificada.</p>
+    <p>7. Si no sabes una pregunta, no te bloquees pasa a la otra.</p>
+    <h2>¿Qué sucede al finalizar la información?</h2>
+    <p>Los resultados son revisados manualmente, uno por uno calificados de manera minuciosa.</p>
+    <h2>Términos y Condiciones</h2>
+    <p>Leer las Instrucciones Cuidadosamente: Asegúrate de entender completamente las indicaciones antes de comenzar a responder las preguntas.</p>
+    <p>La información proporcionada será tratada conforme a la Ley 1581 de 2012, relativa a la protección de datos personales.</p>
+    <p>Revisar las Preguntas Antes de Empezar: Lee todas las preguntas primero para planificar cómo abordar cada sección del examen.</p>
+    <p>No Copiar de Otros: Evita cualquier forma de plagio o copia; responde con tus propios conocimientos y habilidades.</p>
+    <p>Mantener la Concentración: Enfócate en el examen sin distracciones para responder lo mejor posible.</p>
+    <p>Respetar el Espacio de Respuesta: Utiliza el espacio asignado para cada respuesta y sigue el formato solicitado.</p>
+    <p></p>No Dejar Preguntas en Blanco: Intenta responder a todas las preguntas; si no estás seguro, al menos haz una suposición educada.
+    <p></p>Revisar tu Trabajo Antes de Entregar: Si el tiempo lo permite, revisa tus respuestas para corregir errores y asegurarte de que no has omitido nada.
+    <p></p>Leer Cuidadosamente Cada Pregunta: Presta atención a los detalles en las preguntas para responder de manera precisa.
+    <p></p>No Realizar Cambios Drásticos en las Respuestas Sin Reflexionar: Si decides cambiar una respuesta, asegúrate de tener una buena razón y revisa cuidadosamente el cambio.
+    <p></p>Mantener la Calma y la Confianza: Mantén la serenidad y confía en tu preparación para manejar el examen de manera efectiva.
+    <p></p>Seguir las Normas de la Evaluación: Adhiérete a las reglas establecidas por el examinador o la institución para evitar problemas.
+    <p></p>No Hacer Trampa: Cumple con los principios de integridad académica; el objetivo es demostrar tus propios conocimientos.
+    <h2>Al hacer clic en "ACEPTAR TÉRMINOS Y CONDICIONES", usted confirma que ha leído, comprendido y aceptado la información aquí proporcionada.</h2>
+    <button class="btn" onclick="nextModal()">Aceptar términos y condiciones</button>
+</div>
+
+<div class="modal hidden" id="modal-2">
+    <img src="imagenes/bienestar.png" alt="Logo de la Fiscalía" class="custom-image">
+    <h2>Nuestra señora de fatima - Soledad - Octavo B</h2>
+    <h1>El Principio de Arquímedes</h1>
+    <button class="btn" onclick="window.location.href='formulario.html';">Buena suerte en tu examen, Espero que te valla bien guerrero</button>
+
+    <h2>diapositiva</h2>
+    <button class="btn" onclick="window.location.href='diapositiva.html';">diapositiva2x</button>
+</div>
+
+<script>
+    function nextModal() {
+        // Animación para que el primer modal salga de la pantalla hacia abajo
+        const modal1 = document.getElementById('modal-1');
+        modal1.classList.add('hide');
+
+        // Espera a que termine la animación antes de mostrar el siguiente modal
+        setTimeout(() => {
+            modal1.classList.add('hidden');
+            const modal2 = document.getElementById('modal-2');
+            modal2.classList.remove('hidden');
+            setTimeout(() => {
+                modal2.classList.add('show');
+            }, 50); // Pequeño retraso para que la animación se active
+        }, 500); // Debe coincidir con el tiempo de transición del CSS
+    }
+
+    // Mostrar el primer modal con una animación al cargar la página
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal1 = document.getElementById('modal-1');
+        setTimeout(() => {
+            modal1.classList.add('show');
+        }, 50); // Pequeño retraso para que la animación se active
+    });
+</script>
+
+</body>
+</html>

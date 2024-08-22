@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen | Grupo 2</title>
+    <link rel="icon" href="imagenes/policia.png" type="image/png">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            background-color: #f4f4f4;
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .top-bar, .bottom-bar {
+            background-color: #096b00;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .top-bar img {
+            height: 40px;
+            cursor: pointer;
+        }
+
+        .bottom-bar {
+            font-size: 14px;
+        }
+
+        .bottom-bar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .bottom-bar a:hover {
+            text-decoration: underline;
+        }
+
+        .header {
+            background-color: #ddd;
+            color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 90%;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container img {
+            max-width: 100%;
+            max-height: 800px;
+            border-radius: 8px;
+            transition: opacity 0.5s ease;
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 30px;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.8;
+        }
+
+        .nav-button:hover {
+            opacity: 1;
+        }
+
+        .nav-left {
+            left: 10px;
+        }
+
+        .nav-right {
+            right: 10px;
+        }
+
+        /* Estilos para la imagen superpuesta */
+        .overlay-container {
+            position: relative;
+        }
+
+        .overlay-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px; /* Ajusta el tamaño según tus necesidades */
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <a href="index.html">
+            <img src="imagenes/policia.png" alt="Logo de la Fiscalía">
+        </a>
+    </div>
+
+    <div class="content">
+        <div class="container">
+            <button class="nav-button nav-left" onclick="previousImage()">&#8249;</button>
+
+            <!-- Contenedor del carrusel con imagen superpuesta -->
+            <div class="overlay-container">
+                <img id="carousel" src="imagenes/image1.jpg" alt="Imagen 1">
+                
+                <!-- Esta es la imagen superpuesta que llevará al enlace -->
+                <a href="examen2.html">
+                    <img src="imagenes/Captura de pantalla 2024-08-15 222727.png" alt="Imagen superpuesta" class="overlay-image">
+                </a>
+            </div>
+
+            <button class="nav-button nav-right" onclick="nextImage()">&#8250;</button>
+        </div>
+    </div>
+
+    <div class="bottom-bar">
+        <div>
+            <a href="idia.html">Licenciada Idia, Fisica</a> | 
+            <a href="#">Privacy Policy</a> | 
+            <a href="#">Terms of Service</a>
+        </div>
+        <div>
+            © 2024 Alejandro Saenz | Todos los derechos para el desarrollador Alejandro/Water y Ruben Velasquez
+        </div>
+    </div>
+
+    <script>
+let currentImageIndex = 0;
+const images = [
+    'imagenes/image1.png',  // Primera imagen
+    'imagenes/image2.png',  
+    'imagenes/image3.png',
+    'imagenes/image4.png',
+    'imagenes/image5.png',
+    'imagenes/image6.png',
+    'imagenes/image7.png',
+    'imagenes/image8.png',
+    'imagenes/image9.png',
+    'imagenes/image10.png',
+    'imagenes/image11.png',
+    'imagenes/image12.png',
+    'imagenes/image13.png'
+];
+
+function showImage(index) {
+    const imgElement = document.getElementById('carousel');
+    imgElement.style.opacity = 0;
+    setTimeout(() => {
+        imgElement.src = images[index];
+        imgElement.style.opacity = 1;
+    }, 500);
+
+    // Solo mostrar la imagen superpuesta cuando la imagen 13 esté activa
+    const overlayImage = document.querySelector('.overlay-image');
+    if (index === 12) {
+        overlayImage.style.display = 'block'; // Mostrar la imagen superpuesta
+    } else {
+        overlayImage.style.display = 'none';  // Ocultar la imagen superpuesta
+    }
+}
+
+function nextImage() {
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    showImage(currentImageIndex);
+}
+
+function previousImage() {
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+    showImage(currentImageIndex);
+}
+
+window.onload = function() {
+    currentImageIndex = 0; 
+    showImage(currentImageIndex);
+};
+    </script>
+    
+</body>
+</html>
